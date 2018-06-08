@@ -1,0 +1,11 @@
+# auth_4 - predictable password reset token
+- Click ‘RESET PASSWORD’
+- Enter ‘guest’ as username and click ‘SUBMIT’.
+- Notice that in the fake inbox there is a ‘Password Reset Request’ email with a link.
+- Inspect link, https://scm1.cdu9xbn8bapxzssooudpig.exam.ns.agency/reset/guest?token=35675e68f4b5af7b995d9205ad0fc43842f16450
+- Notice the username is included in url after /reset/ and token looks like a common hash.
+- Calculate common hash values of things you know i.e. username. (Refer to auth_6 for how)
+- Determine it’s sha1 so craft your own reset link with ‘admin’ and token as sha1(‘admin’), https://scm1.cdu9xbn8bapxzssooudpig.exam.ns.agency/reset/admin?token=d033e22ae348aeb5660fc2140aec35850c4da997
+- Enter new password as your heart desires.
+- Login using ‘admin’ and your newly reset password.
+- Navigate to /admin to find flag{…} displayed.

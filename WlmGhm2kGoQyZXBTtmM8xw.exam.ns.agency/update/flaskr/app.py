@@ -27,7 +27,8 @@ class ConfigClass(object):
     SECRET_KEY = 'Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like Exam?'
     SQL_ROOT_PASSWORD = os.getenv("MYSQL_ROOT_PASSWORD", "")
     DB_HOST = os.getenv("DB_HOST", "localhost")
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:{}@{}/db'.format(SQL_ROOT_PASSWORD, DB_HOST)
+    #SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:{}@{}/db'.format(SQL_ROOT_PASSWORD, DB_HOST)
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
     HOST = os.getenv("HOST", "http://localhost")

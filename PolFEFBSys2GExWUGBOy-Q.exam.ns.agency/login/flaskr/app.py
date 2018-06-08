@@ -24,8 +24,8 @@ class ConfigClass(object):
     SECRET_KEY = 'wubba lubba dub dub!'
     SQL_ROOT_PASSWORD = os.getenv("MYSQL_ROOT_PASSWORD", "")
     DB_HOST = os.getenv("DB_HOST", "mysql")
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:{}@{}/db'.format(SQL_ROOT_PASSWORD, DB_HOST)
-    #SQLALCHEMY_DATABASE_URI = "sqlite://"
+    #SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:{}@{}/db'.format(SQL_ROOT_PASSWORD, DB_HOST)
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
     HOST = os.getenv("HOST", "http://localhost")
