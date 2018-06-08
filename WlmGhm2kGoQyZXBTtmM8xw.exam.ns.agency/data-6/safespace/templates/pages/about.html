@@ -1,0 +1,20 @@
+{% extends 'layouts/main.html' %}
+{% block title %}About{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>About Smug Security Safe Spaces</h1>
+  <div class="row">
+      <div class="col-md-4">
+          <h3>Static Server Side Safe Space</h3>
+          <p>Our static content is served in our webprison chroot jail. It's our flagship product, the Smug Security 'Safe Space'</p>
+          <img src="/safe/img?i=ssecure256x256.jpg" />
+      </div>
+      <div class="col-md-8">
+          <iframe src="/safe/page?p=home.html"></iframe>
+      </div>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron" style="padding: 32px;">
+
+{% if current_user.trash.count() == 0 %}
+    <div class="lead text-center">
+    You have yet to fill the internet with trash!
+    </div>
+{% else %}
+
+<table class="table table-hover">
+<thead>
+<tr>
+  <th scope="col">#</th>
+  <th scope="col">TITLE</th>
+  <th scope="col">TIMESTAMP</th>
+  <th scope="col">GO TO</th>
+  <th scope="col">VIEWS</th>
+</tr>
+</thead>
+<tbody>
+{% for t in current_user.trash %}
+    <tr class="table-active">
+      <th scope="row">{{ t.idx }}</th>
+      <td>{{ t.title }}</td>
+      <td>{{ t.timestamp }}</td>
+      <td><a href="{{ url_for('.trash_page', id=t.uuid) }}?p={{ t.password or '' }}">LINK</a></td>
+      <td>{{ t.views }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endif %}
+</div>
+
+{% endblock %}

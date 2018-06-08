@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="jumbotron offset-3 col-6">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <h3>Secret Question</h3>
+        <p class="lead font-italic text-center" style="color: darkcyan; margin-bottom: 20px;">{{ q }}</p>
+        <fieldset class="form-group">
+            {{ form.response.label }}
+            {{ form.response(size=128, class_="form-control") }}
+            {% for error in form.response.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </fieldset>
+        <fieldset class="form-group">
+            {{ form.password.label }}
+            {{ form.password(size=32, class_="form-control") }}
+            {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </fieldset>
+        {{ form.submit(class_="btn btn-lg btn-light offset-3 col-6") }}
+    </form>
+    </div>
+
+{% endblock %}

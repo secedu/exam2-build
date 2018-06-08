@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron" style="padding: 32px;">
+
+    {% for t in trash %}
+    <div class="article-container">
+      <a href="/page/{{ t.uuid }}">
+        <h3 class="article-title">{{ t.title }}</h3>
+      </a>
+      <p class="article-metadata">
+          <span class="article-by">Posted by < {{ t.author.username or 'anonymous' }} ></span>
+          <span class="article-ts"> on {{ t.timestamp.strftime('%A, %d %B %Y') }}</span>
+      </p>
+      <hr/>
+      <p class="lead article-body">{% if not t.password %}{{ t.content | truncate(128) }}{% else %}&ltredacted&gt{% endif %}</p>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

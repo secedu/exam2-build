@@ -1,0 +1,26 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% if session['logged_in'] %}
+<div class="page-header">
+  <h1>iDont Messenger</h1>
+</div>
+<p class="lead">Got no friends? Who needs em, amirite? <!-- Forever Alone. I wanted to code a friend! -->Send your echos to the void toward my greeter! He doesn't have a name, he's Noone. <code>4badd00d-d11d-4bad-1dea-c001fac3db01</code> would be delighted to fill your day with complex dialogue.</p>
+<div class="row">
+
+  <div class="col-md-5">
+    <iframe src="/user/{{ session['user_id'] }}" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+  </div>
+  <div class="col-md-7">
+    <h3>Your conversations</h3>
+    <iframe src="/message/history?v={{ mailkey }}" frameborder="0" scrolling="yes" width="100%" height="350px"></iframe>
+  </div>
+</div>
+<p class="lead">I hope you enjoyed and continue to enjoy this adventure together.</p>
+{% else %}
+<div class="page-header">
+    <p>Tell sketch how you saw me. :)</p>
+</div>
+{% endif %}
+
+{% endblock %}

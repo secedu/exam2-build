@@ -1,0 +1,36 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[dev-packages]
+
+
+
+[packages]
+
+click = "==6.7"
+flask = "==0.12.1"
+itsdangerous = "==0.24"
+"jinja2" = "==2.9.6"
+markupsafe = "==1.0"
+pyparsing = "==2.2.0"
+werkzeug = "==0.12.1"
+psutil = "==5.4.3"
+flask-sqlalchemy = "==2.3.2"
+selenium = "*"
+flask-wtf = "==0.14.2"
+appdirs = "==1.4.3"
+flask-login = "==0.4.1"
+flask-uuid = "==0.2"
+python-dateutil = "==2.7.3"
+pymysql = "==0.8.1"
+packaging = "==16.8"
+six = "==1.10.0"
+
+
+[requires]
+
+python_version = "3.6"

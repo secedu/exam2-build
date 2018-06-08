@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="jumbotron">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            {{ form.username.label }}
+            {{ form.username(size=32, class_="form-control") }}
+            {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </fieldset>
+        <fieldset class="form-group">
+            {{ form.password.label }}
+            {{ form.password(size=32, class_="form-control") }}
+            {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </fieldset>
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="remember_me">
+              <label class="custom-control-label" for="remember_me" checked=""  >REMEMBER ME</label>
+            </div>
+        </div>
+        {{ form.submit(class_="btn btn-lg btn-dark") }}
+       <a href="{{ url_for('.register') }}" class="btn btn-lg btn-dark">REGISTER</a>
+    </form>
+    </div>
+
+{% endblock %}

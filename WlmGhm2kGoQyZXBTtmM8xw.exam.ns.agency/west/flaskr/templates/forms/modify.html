@@ -1,0 +1,15 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<form method="post" class="form">
+    <h3 class="form-heading">Modify Creds</h3>
+    <h5>First Name</h5>
+    {{ form.firstname(class_ = 'form-control first-input', placeholder = form.firstname.label.text, required = true, autofocus = true) }}
+    <h5>Last Name</h5>
+    {{ form.lastname(class_ = 'form-control', placeholder = form.lastname.label.text, required = true) }}
+    <h5>Signature</h5>
+    {{ form.signature(class_ = 'form-control last-input', placeholder= form.signature.label.text) }}
+    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">
+    {% if err %}<p class="alert alert-danger">{{ err }}</p>{% endif %}
+</form>
+{% endblock %}

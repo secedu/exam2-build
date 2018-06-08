@@ -1,0 +1,35 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% if session['logged_in'] %}
+<div class="page-header">
+  <h1>User Profile</h1>
+</div>
+<p class="lead">Facegood is the next generation end-2-end encrypted messenger solution by leading software manufacturer iDont.</p>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+    <iframe src="/user/{{ session['user_id'] }}" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+  </div>
+  <div class="col-md-5">
+    <form action="/modify/{{ session['user_name'] }}" method="post" class="form">
+      <h3 class="form-heading">Update it</h3>
+      <h5>First Name</h5>
+      {{ form.firstname(class_ = 'form-control first-input', placeholder = form.firstname.label.text, required = true, autofocus = true) }}
+      <h5>Last Name</h5>
+      {{ form.lastname(class_ = 'form-control', placeholder = form.lastname.label.text, required = true) }}
+      <h5>Signature</h5>
+      {{ form.signature(class_ = 'form-control last-input', placeholder= form.signature.label.text) }}
+      <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">
+      {% if err %}<p class="alert alert-danger">{{ err }}</p>{% endif %}
+    </form>
+  </div>
+</div>
+<p class="lead">I hope you enjoyed and continue to enjoy our adventure together.</p>
+{% else %}
+<div class="page-header">
+    <p>Tell sketch how you saw me. :)</p>
+</div>
+{% endif %}
+
+{% endblock %}

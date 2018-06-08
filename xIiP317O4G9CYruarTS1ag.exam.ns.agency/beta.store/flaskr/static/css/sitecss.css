@@ -1,0 +1,68 @@
+.navpad-top {
+    margin-bottom: 100px;
+}
+
+body {
+    background-color: #23272b;
+}
+
+h1, h2, h3, h4, h5{
+	color: #ffffff;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+p {
+	color: #ffffff;
+}
+img {
+	width: 100%;
+}
+
+.status-text {
+    margin-bottom: 0px;
+    color: red;
+    text-align: center;
+}
+
+.form-input {
+    padding-bottom: 7px;
+    text-align: center;
+}
+
+.width-filled {
+	width: 100%;
+}
+.cell-container {
+	position: relative;
+	width: 180px;
+	height: 180px;
+	margin: 0 auto;
+}
+.cell-container>.cell {
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+
+.centered-block {
+	margin-left: auto;
+	margin-right: auto;
+    text-align: center;
+}
+.centered{
+	text-align: center;
+}
+
+.centerpiece {
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding-bottom: 7px;
+}
+
+
+#qr {
+	width: 180px;
+	height: 180px;
+}

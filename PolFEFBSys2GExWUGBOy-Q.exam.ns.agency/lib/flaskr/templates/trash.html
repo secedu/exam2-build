@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron" style="padding-top: 40px; padding-bottom: 0px">
+
+<h1 class="display-5">{{ trash.title }}</h1>
+
+<div class="row text-muted">
+
+    <div class="col-8">
+        <span class="metadata">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z"/></svg>
+        <span>{% if trash.author is none %}
+            Anonymous
+        {% else %}
+            {{ trash.author.username }}
+        {% endif %}</span>
+        </span>
+
+        <span class="metadata">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M13 2h-1v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H6v1.5c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5V2H2c-.55 0-1 .45-1 1v11c0 .55.45 1 1 1h11c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 12H2V5h11v9zM5 3H4V1h1v2zm6 0h-1V1h1v2zM6 7H5V6h1v1zm2 0H7V6h1v1zm2 0H9V6h1v1zm2 0h-1V6h1v1zM4 9H3V8h1v1zm2 0H5V8h1v1zm2 0H7V8h1v1zm2 0H9V8h1v1zm2 0h-1V8h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1zm2 0h-1v-1h1v1zm-8 2H3v-1h1v1zm2 0H5v-1h1v1zm2 0H7v-1h1v1zm2 0H9v-1h1v1z"/></svg>
+        <span>{{ trash.timestamp.strftime('%Y-%m-%d') }}</span>
+        </span>
+
+        <span class="metadata">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M8 8h3v2H7c-.55 0-1-.45-1-1V4h2v4zM7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"/></svg>
+        <span>{{ trash.timestamp.strftime('%-I:%M %p') }}</span>
+        </span>
+
+        <span class="metadata">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"/></svg>
+        <span>{{ trash.views }}</span>
+        </span>
+
+         <img src="/static/{{ trash.highlight | xss_3 | safe }}.svg" style="width: 35px;"/> 
+
+    </div>
+
+    <div class="col-4">
+        <select class="form-control" id="hlselect">
+            {% for k, v in highlighters %}
+                <option value="{{ k }}">{{ v }}</option>
+            {% endfor %}
+        </select>
+        <script>
+            var hl = '{{ trash.highlight }}';
+            $('#hlselect').val(hl);
+            $('#hlselect').change(function(e) {
+                trash = $('#trash');
+                trash.removeClass(hl);
+                hl = $(this).val();
+                trash.addClass(hl);
+                trash.text(trash.text());
+                hljs.highlightBlock(document.getElementById('trash'));
+            });
+        </script>
+    </div>
+
+</div>
+<hr class="my-8">
+
+<pre class="wordwrap"><code class="hljs {{ trash.highlight }}" id="trash">{{ trash.content }}</code></pre>
+
+</div>
+
+{% endblock %}

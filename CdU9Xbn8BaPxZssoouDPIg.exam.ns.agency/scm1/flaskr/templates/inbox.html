@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for e in emails %}
+<div class="jumbotron" style="padding: 32px;">
+  <h3 class="lead" style="color: #fff">{{ e.subject }}</h3>
+  <p class="" style="color: darkcyan">{{ e.timestamp.strftime('%R %A, %d %B %Y') }}</p>
+  <hr/>
+  <p class="">{{ e.body | safe }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'layouts/safe.html' %}
+
+{% block content %}
+{% for line in lines %}
+{{ line|safe }}
+{% endfor %}
+{% endblock %}

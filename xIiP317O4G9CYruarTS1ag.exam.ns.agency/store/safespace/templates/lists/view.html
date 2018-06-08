@@ -1,0 +1,13 @@
+{% extends 'layouts/list.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<h3 class="form-heading">Your information</h3>
+{% for k, v in list.items() %}
+<div>
+    <h5>{{ k }}</h5>
+    <p class="leading">{{ v }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

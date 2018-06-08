@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GlueTrash</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/highlight.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+            padding-top: 16px;
+        }
+        .wordwrap {
+            white-space: pre-wrap; /* CSS3 */
+            white-space: -moz-pre-wrap; /* Firefox */
+            white-space: -pre-wrap; /* Opera <7 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* IE */
+        }
+        svg {
+            top: 0.125em;
+            display: inline-flex;
+            position: relative;
+            height: 1em;
+            width: 1em;
+        }
+        pre {
+            border: none;
+            font-family: monospace, sans-serif;
+            font-weight: lighter;
+        }
+        .metadata {
+            padding: 2px;
+        }
+        .article-container {
+            margin: 8px;
+            padding-bottom: 16px;
+        }
+        .article-title {
+        }
+        .article-metadata {
+             color: #aaa;
+        }
+        .article-body {
+        }
+        .article-ts{
+
+        }
+        .article-by {
+
+        }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="col-9 offset-1 navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="/{% if current_user.is_authenticated %}home{% endif %}">
+            <svg class="icon" style="fill: white" xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
+        GLUETRASH
+        </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="/home">HOME</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="/">RECENT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/post">NEW TRASH</a>
+          </li>
+        </ul>
+
+        {% if current_user.is_authenticated %}
+            <span>Logged in as ( <span class="text-info">{{ current_user.username }}</span> )</span>
+          <form action="{{ url_for('.logout') }}">
+              <button type="submit" class="btn btn-dark btn-danger" id="btnLogout"/>LOGOUT</button>
+          </form>
+          {% else %}
+          <span>Anonymous</span>
+          <form action="{{ url_for('.login') }}">
+              <button type="submit" class="btn btn-dark" id="btnLogin"/>LOGIN</button>
+          </form>
+          {% endif %}
+
+      </div>
+    </nav>
+
+        <!-- Bootstrap core JavaScript -->
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Page Content -->
+    <div class="col-9 offset-1" style="margin-top: 16px;">
+
+        {% if title %}
+        <div class="col-lg-12 text-center">
+          <h1 class="mt-5">{{ title | safe }}</h1>
+          {% if subtitle %}
+          <p class="lead">{{ subtitle }}</p>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-info alert-dismissable" id="flashbox">
+            <button type="button" class="close" data-dismiss="alert">X</button>
+            {% for message in messages %}
+              <div class="span8" style="text-align: center; font-size: 1.5em">{{ message }}</div>
+            {% endfor %}
+            </div>
+        <script>
+            //setTimeout(function() {
+            //    $('#flashbox').fadeOut('slow');
+            //}, 3000) // <-- time in milliseconds
+        </script>
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+  </body>
+
+</html>

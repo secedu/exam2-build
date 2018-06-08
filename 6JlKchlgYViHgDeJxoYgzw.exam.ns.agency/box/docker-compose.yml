@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  challenge:
+    build: .
+    ports:
+      - "80"
+    links:
+      - mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=hunter123
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=hunter123
+      - MYSQL_DATABASE=db

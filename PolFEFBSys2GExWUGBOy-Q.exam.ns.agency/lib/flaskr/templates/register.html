@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="jumbotron">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            {{ form.username.label }}
+            {{ form.username(size=32, class_="form-control") }}
+            {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </fieldset>
+        <fieldset class="form-group">
+            {{ form.password.label }}
+            {{ form.password(size=32, class_="form-control") }}
+            {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </fieldset>
+        <fieldset class="form-group">
+            {{ form.confirm.label }}
+            {{ form.confirm(size=32, class_="form-control") }}
+            {% for error in form.confirm.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </fieldset>
+        {{ form.submit(class_="btn btn-lg btn-dark") }}
+    </form>
+    </div>
+
+{% endblock %}

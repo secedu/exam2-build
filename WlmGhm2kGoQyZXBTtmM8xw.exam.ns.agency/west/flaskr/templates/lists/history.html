@@ -1,0 +1,63 @@
+{% extends 'layouts/list.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+{% if err %}
+
+<p class="alert alert-danger">{{ err }}</p>
+
+{% else %}
+
+<!-- Message Sending Form -->
+<div class="row">
+    <div class="col-md-5 msg-send-container">
+        <form action="/message/send" method="post" class="form">
+        <h5 class="msg-user">
+             <input type="hidden" name="src" value="{{ session['user_id'] }}"> 
+            <span class="msg-me">{{ session['user_name'] }}</span>-&gt;{{ form.mailbox(class_ = 'msg-address', placeholder = form.mailbox.label.text, required = true, autofocus = true) }}
+            <input type="submit" value="Submit" class="btn btn-primary btn-sm pull-right">
+        </h5></br>
+        <p>{{ form.message(class_ = 'msg-content', placeholder = form.message.label.text, required = true) }}</p>
+        </form>
+    </div>
+</div>
+
+{% for rec in msgs %}
+
+<div class="row">
+    {% if rec.src == session['user_name'] %}
+    <div class="col-md-5 msg-send-container">
+    <!-- <div class="msg-send"> -->
+        <h5><span class="msg-me">{{ rec.src }}</span>-&gt;<a onclick="getElementById('mailbox').value = '{{ rec.dstbox }}'">{{ rec.dst }}</a></h5>
+        <!-- <p class="msg">{{ rec.dst }}</p> -->
+
+        <p class="msg">{{ rec.msg }}</p>
+    </div>
+    {% else %}
+    <!-- <div class="col-md-2"></div> -->
+    <div class="col-md-5 msg-recv-container">
+        <!-- <div class="msg-recv"> -->
+        <h5 class="msg-recv"><span class="msg-me">{{ rec.dst }}</span>&lt;-<a onclick="getElementById('mailbox').value = '{{ rec.srcbox }}'">{{ rec.src }}</a></h5>
+        <p class="msg">{{ rec.msg }}</p>
+    </div>
+    <!-- </div> -->
+    {% endif %}
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    $("#mailbox a").click(function(){
+        var value = $(this).html();
+        var input = $("#mailbox");
+        input.val
+    });
+});
+</script>
+{% endblock %}
